@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <title>🎈生日贺卡趣味生成器</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Microsoft Yahei", sans-serif;
+    }
+    body {
+      background: linear-gradient(135deg, #fff5e6, #ffe4ec);
+      min-height: 100vh;
+      padding: 40px 30px;
+    }
+    .wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 40px;
+      align-items: center;
+    }
+    /* 左侧表单区域 */
+    .form-box {
+      background: #ffffff;
+      padding: 35px;
+      border-radius: 20px;
+      box-shadow: 0 8px 24px rgba(255, 107, 157, 0.25);
+      border: 2px solid #ffd1dc;
+    }
+    h1 {
+      text-align: center;
+      color: #e64980;
+      margin-bottom: 30px;
+      font-size: 26px;
+      letter-spacing: 1px;
+    }
+    .item {
+      margin-bottom: 18px;
+    }
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: #552042;
+      font-size: 15px;
+    }
+    input {
+      width: 100%;
+      padding: 14px;
+      border: 1px solid #ffc2d1;
+      border-radius: 12px;
+      font-size: 16px;
+      background-color: #fff9fb;
+      transition: 0.3s;
+    }
+    input:focus {
+      outline: none;
+      border-color: #ff6b9d;
+      box-shadow: 0 0 6px rgba(255,107,157,0.3);
+    }
+    .btn-box {
+      display: flex;
+      gap: 10px;
+      margin-top: 12px;
+    }
+    button {
+      flex: 1;
+      padding: 14px;
+      border: none;
+      border-radius: 12px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s;
+      font-weight: 600;
+    }
+    .gen-btn {
+      background: linear-gradient(90deg, #ff6b9d, #ff85a8);
+      color: white;
+    }
+    .copy-btn {
+      background: #ffe4ec;
+      color: #c2255c;
+    }
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    /* 右侧：贺卡内页样式 */
+    .card-box {
+      display: flex;
+      justify-content: center;
+    }
+    .birthday-card {
+      width: 100%;
+      max-width: 420px;
+      aspect-ratio: 3 / 4;
+      background: #fffdfb;
+      border-radius: 16px;
+      padding: 40px 30px;
+      box-shadow: 0 12px 30px rgba(220, 120, 160, 0.25);
+      border: 1px solid #ffd6e0;
+      position: relative;
+      overflow: hidden;
+      /* 贺卡内页文字排版 */
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+    }
+    .birthday-card::before {
+      content: "🎂 🎈 🎁";
+      position: absolute;
+      top: 15px;
+      left: 0;
+      right: 0;
+      font-size: 20px;
+      opacity: 0.6;
+      letter-spacing: 10px;
+    }
+    .card-text {
+      font-size: 18px;
+      line-height: 1.8;
+      color: #441e34;
+      padding-top: 20px;
+    }
+    .tips {
+      text-align: center;
+      margin-top: 15px;
+      font-size: 13px;
+      color: #b46b88;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <!-- 左侧：填写信息 -->
+    <div class="form-box">
+      <h1>🎂 生日贺卡生成器</h1>
+      <div class="item">
+        <label>✨ 对方姓名</label>
+        <input type="text" id="name" placeholder="例如：小宇">
+      </div>
+      <div class="item">
+        <label>🎈 年龄</label>
+        <input type="text" id="age" placeholder="例如：22">
+      </div>
+      <div class="item">
+        <label>🍭 爱好</label>
+        <input type="text" id="hobby" placeholder="例如：旅行、撸猫、打游戏">
+      </div>
+      <div class="btn-box">
+        <button class="gen-btn" onclick="generateCard()">生成贺卡</button>
+        <button class="copy-btn" onclick="copyText()">复制文案</button>
+      </div>
+      <div class="tips">填入信息，右侧即刻生成专属生日贺卡</div>
+    </div>
+
+    <!-- 右侧：贺卡内页展示 -->
+    <div class="card-box">
+      <div class="birthday-card">
+        <div class="card-text" id="cardResult">
+          你的生日祝福<br>将在这里呈现
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let finalText = "";
+
+    function generateCard() {
+      const name = document.getElementById('name').value.trim();
+      const age = document.getElementById('age').value.trim();
+      const hobby = document.getElementById('hobby').value.trim();
+      if (!name || !age || !hobby) {
+        document.getElementById('cardResult').innerHTML = '🎁 请完整填写<br>姓名、年龄、爱好哦～';
+        return;
+      }
+      const wishes = [
+        `🎂 派对开启！祝${name} ${age}岁生日快乐✨<br>愿${hobby}常伴，好运爆棚，快乐满格，岁岁皆欢喜！`,
+        `🎈 叮！${name} ${age}岁生辰快乐<br>尽情热爱${hobby}，暴富变美，无忧无虑，每一天都闪闪发光～`,
+        `🎉 生日快乐${name}！解锁${age}岁全新版本<br>愿${hobby}治愈所有疲惫，平安喜乐，万事胜意！`,
+        `🍬 恭喜${name}喜提${age}岁<br>往后三餐四季，${hobby}相伴，自由快乐，美好如约而至，不止今天！`,
+        `🥳 ${name} ${age}岁生日快乐<br>愿热爱的${hobby}永不落幕，烦恼清零，快乐加倍，永远做开心小孩！`
+      ];
+      finalText = wishes[Math.floor(Math.random() * wishes.length)];
+      document.getElementById('cardResult').innerHTML = finalText;
+    }
+
+    function copyText() {
+      if (!finalText) {
+        alert("请先生成生日贺卡！");
+        return;
+      }
+      // 去除HTML换行，转为纯文本
+      let plainText = finalText.replace(/<br>/g, '\n').replace(/🎂|🎈|🎉|🍬|🥳|✨/g, '').trim();
+      navigator.clipboard.writeText(plainText).then(() => {
+        alert("✅ 已复制成功！");
+      });
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+body {
+  margin: 0;
+  overflow: hidden;
+  background-color: #fff8e1; /* 奶油色背景 */
+  font-family: sans-serif;
+}
+
+/* 顶部面板 */
+#top-panel {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255,255,255,0.6);
+  backdrop-filter: blur(8px);
+  border-radius: 12px;
+  padding: 8px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  z-index: 10;
+}
+
+#save-panel select, #save-panel button {
+  padding: 4px 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  background: rgba(255,255,255,0.8);
+  cursor: pointer;
+}
+
+/* 底部工具栏 */
+#tool-bar {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  background: rgba(255,255,255,0.6);
+  backdrop-filter: blur(8px);
+  padding: 6px 12px;
+  border-radius: 12px;
+  z-index: 10;
+}
+
+.tool {
+  padding: 4px 8px;
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: center;
+  font-weight: bold;
+  user-select: none;
+}
+
+.tool:hover, .tool.active {
+  background: rgba(255,255,255,0.9);
+}
+
+/* 小地图 */
+#mini-map {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  border-radius: 8px;
+  background: rgba(255,255,255,0.6);
+  backdrop-filter: blur(8px);
+  z-index: 10;
+  image-rendering: pixelated;
+}
+
+/* 提示文字 */
+#hint {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(255,255,255,0.7);
+  backdrop-filter: blur(6px);
+  padding: 8px 16px;
+  border-radius: 12px;
+  font-weight: bold;
+  opacity: 1;
+  transition: opacity 1s;
+  z-index: 10;
+}
