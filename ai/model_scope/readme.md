@@ -18,3 +18,22 @@ JS数据类型Number
 人生苦短，我用python
 
 复合语句结尾必须加 :，表示下一行是从属代码块,缩进来
+
+## LLM api 调用
+- 安装openai sdk
+- 实例化client
+    api_key
+    base_url
+    遵守同样的接口标准
+- client.chat.completion.creat()
+    aigc文本生成的接口
+    model d
+    prompt
+## Prompt 高级设计模式
+- 详细且准确的指令
+- 一步步，分条列点去引导llm工作
+- 对返回结果的格式做约束
+    json 格式
+    - 清晰正确
+    - json适合接下来继续运行
+    
