@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <title>趣味生日贺卡生成器</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Microsoft Yahei", sans-serif;
+    }
+    body {
+      background: #fef6f9;
+      padding: 40px 20px;
+    }
+    .container {
+      max-width: 500px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    h1 {
+      text-align: center;
+      color: #ff6b9d;
+      margin-bottom: 25px;
+    }
+    .item {
+      margin-bottom: 16px;
+    }
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 500;
+      color: #444;
+    }
+    input {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+    button {
+      width: 100%;
+      padding: 14px;
+      background: #ff6b9d;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 17px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    button:hover {
+      background: #ff5288;
+    }
+    .result {
+      margin-top: 25px;
+      padding: 18px;
+      background: #fff0f6;
+      border-radius: 10px;
+      font-size: 16px;
+      line-height: 1.6;
+      color: #333;
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🎂 生日贺卡生成器</h1>
+    <div class="item">
+      <label>姓名</label>
+      <input type="text" id="name" placeholder="例如：小明">
+    </div>
+    <div class="item">
+      <label>年龄</label>
+      <input type="text" id="age" placeholder="例如：18">
+    </div>
+    <div class="item">
+      <label>爱好</label>
+      <input type="text" id="hobby" placeholder="例如：打游戏、旅行、干饭">
+    </div>
+    <button onclick="generateCard()">生成趣味生日祝福</button>
+    <div class="result" id="result"></div>
+  </div>
+
+  <script>
+    function generateCard() {
+      const name = document.getElementById('name').value.trim();
+      const age = document.getElementById('age').value.trim();
+      const hobby = document.getElementById('hobby').value.trim();
+      if (!name || !age || !hobby) {
+        document.getElementById('result').innerText = '请完整填写姓名、年龄、爱好哦～';
+        return;
+      }
+      const wishes = [
+        `祝超可爱的${name} ${age}岁生日快乐✨！愿你热爱的${hobby}天天开心，好运爆棚，快乐翻倍，永远闪闪发光～`,
+        `叮！${name} ${age}岁生辰快乐🎈！继续尽情享受${hobby}，吃好喝好没烦恼，暴富暴美，岁岁欢喜！`,
+        `生日快乐我的宝${name}🎉！解锁${age}岁新身份，愿${hobby}带给你无限快乐，平安顺遂，永远做快乐小孩！`,
+        `恭喜${name}喜提${age}岁🎊！愿往后日子，${hobby}相伴，自由欢喜，所有美好如期而至，快乐不止今天！`,
+        `🎂 ${name} ${age}岁生日快乐！愿${hobby}常伴左右，烦恼退散，暴富可爱，每天都超开心！`
+      ];
+      const randomText = wishes[Math.floor(Math.random() * wishes.length)];
+      document.getElementById('result').innerText = randomText;
+    }
+  </script>
+</body>
+</html>
