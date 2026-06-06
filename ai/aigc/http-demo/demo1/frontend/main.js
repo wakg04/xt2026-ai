@@ -1,24 +1,37 @@
 let friends=[];
 
-function loadData(){
+async function loadData(){
     // console.log('loadData');
     //endpoint 
     const endpoint ='http://localhost:3000/friends'
-    fetch(endpoint)//发送请求 异步
-        //等待响应返回
-        //响应体是json二进制字符串 转换问json对象
-        .then(res=>res.json())
-        .then(data=>{
-            console.log(data);
-        })
+    //异步变同步
+    const res =await fetch(endpoint);
+    const data =await res.json();
+    return data;
 }
-function renderData(){
+function renderData(friends){
     console.log('renderData');
+    const oBody=document.querySelector('table tbody');
+    if(friends.length>0){
+            oBody.innerHTML = friends.map(function(friend){
+                console.log(friend);
+                return `
+                <tr>
+                <td>${friends.id}</td>
+                <td>${friends.name}</td>
+                <td>${friends.age}</td>
+                </tr>
+                `
+            }).join('')
+    }
+
 }
-function init(){
+async function init(){
     console.log('init start');
-    loadData();
-    renderData();
+    const friends=await loadData();
+    console.log(friends);
+    renderData(friends);
+    
 }
 init();
-console.log('init end');
+// console.log('init end');

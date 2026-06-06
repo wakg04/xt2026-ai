@@ -25,3 +25,8 @@ fetch
     dns 解析
 - api url endpoint,配置管理
     api请求的重点
+- async/await 控制了执行流程
+    - 先等到它请求完数据接口
+- json 数组-> tr 字符串的数组(map)
+
+查看MDN官方文档 详细了解每个API的用法
