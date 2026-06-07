@@ -15,10 +15,23 @@ es6 是javascript 在2015年推出的新版本，变化比较大，目标是让j
     let const 不能重复声明，const 简单数据类型不能重新赋值，复杂数据类型可以重新赋值，但不可以改变其指向的内存地址(类型)
 - ...rest 运算符 收|spread 展开运算符
 - 解构赋值 简洁且性能好
-    - 对象
+    - 对象S
     - 数组 
 - 模块化 esm 模块
     - import from
     - export dufault
     - export
+
+## nlp 任务
+- 情感分类 sentiment analysis(classification)
+    正面 | 负面 | 中性
+    电商等行业中非常重要 客户服务、预警、产品质检等
+    后台 
+- 信息提取 information extraction
+- 主题推断
+- 文本总结 summarization
+    老板、行政岗、小编 需要长文本进行总结,提取出信息,减少工作量
     
+仅用几分钟，我们就可以构建多个用于对文本进行**推理**的系统，
+而以前需要熟练的机器学习人员学习数天到数周的时间(平等)。
+让我们兴奋，可以使用Prompt 构建nlp系统
