@@ -1,0 +1,18 @@
+name: Sync from Gitee
+
+on:
+  schedule:
+    # 每小时同步一次 (UTC 每小时第 7 分，避免整点高峰)
+    - cron: '7 * * * *'
+  # 支持手动触发
+  workflow_dispatch:
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Mirror clone from Gitee and push to GitHub
+        run: |
+          git clone --mirror https://gitee.com/zhang-xuntu/xt2026-ai.git mirror
+          cd mirror
+          git push --mirror https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
